@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<button id="createCitySelector">Создать экземпляр CitySelector</button>
+<button id="destroyCitySelector">Уничтожить экземпляр CitySelector</button>
+
+<fieldset id="info" class="info" style="display: none;">
+    <legend>Выбрано:</legend>
+    <div class="info__text">
+        <!-- При выборе региона и населенного пункта они должны тут появляться -->
+        <code>id</code> региона: <span id="regionText"></span><br>
+        Населенный пункт: <span id="localityText"></span>
+    </div>
+</fieldset>
+
+<br clear="both">
+<hr>
+
+<div id="citySelector">
+    <!-- Контейнер для инициализации компонента -->
+</div>
+
+<script src="//localhost:8080/bundle.js"></script>
+</body>
+</html>
