@@ -45,5 +45,10 @@
     }
   ],
   "selectedRegions": [
+    {
+      "regionId": "61",
+      "localityName": "Ростов-на-Дону",
+      "id": 1
+    }
   ]
 }
