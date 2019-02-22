@@ -1,5 +1,42 @@
+html {
+    font-size: 16px;
+}
+
+.container {
+    width: 60rem;
+    margin: 2rem auto;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 5px 20px #ccc, -2px 5px 20px #ccc;
+}
+
 #info {
     float: right;
 }
 
-// Your code...
+#citySelector {
+    & * {
+        font-size: inherit;
+    }
+}
+
+.select {
+    display: flex;
+    align-items: flex-start;
+
+    & > * {
+        margin: 1rem;
+    }
+}
+
+.select-regions,
+.select-localities,
+.save-btn,
+.select-btn,
+.info {
+    cursor: pointer;
+    &._hidden {
+        display: none;
+    }
+}

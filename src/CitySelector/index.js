@@ -7,6 +7,7 @@ class CitySelector {
         this._regionsURL = regionsUrl;
         this._localitiesURL = localitiesUrl;
         this._saveURL = saveUrl;
+        this._infoBox = $infoElement;
         this._infoRegion = $infoElement.find('#regionText');
         this._infoLocal = $infoElement.find('#localityText');
 
@@ -17,16 +18,17 @@ class CitySelector {
 
         this._element.html(this.render());
         this.initEvents();
+        this.showInfoBox();
     }
 
     render() {
         if (!this._html) {
             this._html = `
     <button class="select-btn">Выбрать регион</button>
-    <form action="#">
-        <select name="regions" class="select-regions"></select>
-        <select name="localities" class="select-localities"></select>
-        <button class="save-btn">Сохранить</button>
+    <form class="select" action="#">
+        <select name="regions" class="select-regions _hidden"></select>
+        <select name="localities" class="select-localities _hidden"></select>
+        <button class="save-btn _hidden">Сохранить</button>
     </form>
         `
         }
@@ -34,32 +36,43 @@ class CitySelector {
     }
 
     initEvents() {
-        this._element.click( (ev) => {
-            const target = ev.target;
-            if (target.classList.contains('select-btn')) {
-                this.getRegions();
-                return;
-            }
+        this._element.click(this.clickElementHandler.bind(this));
+    }
 
-            if (target.classList.contains('select-regions__item')) {
-                this._selectedRegionId = target.dataset.idRegion;
-                this.getLocalities(this._selectedRegionId);
-                this._infoRegion.html(this._selectedRegionId);
-                this._infoLocal.html('');
-                return;
-            }
+    clickElementHandler(ev) {
+        const target = ev.target;
+        if (target.classList.contains('select-btn')) {
+            this.getRegions();
+            this.openRegionList();
+            this.hideSelectButton();
+            return;
+        }
 
-            if (target.classList.contains('select-localities__item')) {
-                this._selectedLocalName = target.dataset.localName;
-                this._infoLocal.html(this._selectedLocalName);
-                return;
-            }
+        if (target.classList.contains('select-regions__item')) {
+            this._selectedRegionId = target.dataset.idRegion;
+            this.getLocalities(this._selectedRegionId);
+            this._infoRegion.html(this._selectedRegionId);
+            this._infoLocal.html('');
+            this.hideSaveButton();
+            this.openLocalList();
+            return;
+        }
 
-            if (target.classList.contains('save-btn')) {
-                this.saveData();
-                return;
-            }
-        });
+        if (target.classList.contains('select-localities__item')) {
+            this._selectedLocalName = target.dataset.localName;
+            this._infoLocal.html(this._selectedLocalName);
+            this.showSaveButton();
+            return;
+        }
+
+        if (target.classList.contains('save-btn')) {
+            this.saveData();
+            this.hideRegionList();
+            this.hideLocalList();
+            this.hideSaveButton();
+            this.showSelectButton();
+            return;
+        }
     }
 
     getRegions() {
@@ -80,7 +93,7 @@ class CitySelector {
 
     }
 
-    showRegions () {
+    showRegions() {
         const $selectRegions = this._element.find('.select-regions');
 
         $selectRegions.attr('size', this._regions.length);
@@ -108,8 +121,9 @@ class CitySelector {
         }
     }
 
-    showLocalities (regionId) {
+    showLocalities(regionId) {
         const $selectLocalities = this._element.find('.select-localities');
+        $selectLocalities.html('');
 
         $selectLocalities.attr('size', this._localities[regionId].length);
 
@@ -119,7 +133,7 @@ class CitySelector {
         });
     }
 
-    saveData () {
+    saveData() {
         $.ajax({
             type: 'POST',
             url: this._saveURL,
@@ -136,6 +150,53 @@ class CitySelector {
             async: false
         });
     }
+
+    openRegionList() {
+        this._element.find('.select-regions').removeClass('_hidden');
+    }
+
+    openLocalList() {
+        this._element.find('.select-localities').removeClass('_hidden');
+    }
+
+    hideRegionList() {
+        this._element.find('.select-regions').addClass('_hidden');
+    }
+
+    hideLocalList() {
+        this._element.find('.select-localities').addClass('_hidden');
+    }
+
+    showSaveButton() {
+        this._element.find('.save-btn').removeClass('_hidden');
+    }
+
+    hideSaveButton() {
+        this._element.find('.save-btn').addClass('_hidden');
+    }
+
+    showSelectButton() {
+        this._element.find('.select-btn').removeClass('_hidden');
+    }
+
+    hideSelectButton() {
+        this._element.find('.select-btn').addClass('_hidden');
+    }
+
+    showInfoBox() {
+        this._infoBox.removeClass('_hidden');
+    }
+
+    hideInfoBox() {
+        this._infoBox.addClass('_hidden');
+    }
+
+    destroy() {
+        this._element.off('click', this.clickElementHandler);
+        this.hideInfoBox();
+        this._element.html('');
+    }
+
 }
 
 module.exports = CitySelector;

@@ -9,23 +9,25 @@
 </head>
 <body>
 
-<button id="createCitySelector">Создать экземпляр CitySelector</button>
-<button id="destroyCitySelector">Уничтожить экземпляр CitySelector</button>
+<div class="container">
+    <button id="createCitySelector">Создать экземпляр CitySelector</button>
+    <button id="destroyCitySelector">Уничтожить экземпляр CitySelector</button>
 
-<fieldset id="info" class="info">
-    <legend>Выбрано:</legend>
-    <div class="info__text">
-        <!-- При выборе региона и населенного пункта они должны тут появляться -->
-        <code>id</code> региона: <span id="regionText"></span><br>
-        Населенный пункт: <span id="localityText"></span>
+    <fieldset id="info" class="info _hidden">
+        <legend>Выбрано:</legend>
+        <div class="info__text">
+            <!-- При выборе региона и населенного пункта они должны тут появляться -->
+            <code>id</code> региона: <span id="regionText"></span><br>
+            Населенный пункт: <span id="localityText"></span>
+        </div>
+    </fieldset>
+
+    <br clear="both">
+    <hr>
+
+    <div id="citySelector">
+        <!-- Контейнер для инициализации компонента -->
     </div>
-</fieldset>
-
-<br clear="both">
-<hr>
-
-<div id="citySelector">
-    <!-- Контейнер для инициализации компонента -->
 </div>
 
 <script src="https://code.jquery.com/jquery-3.0.0.min.js"

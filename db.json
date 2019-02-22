@@ -49,6 +49,56 @@
       "regionId": "61",
       "localityName": "Ростов-на-Дону",
       "id": 1
+    },
+    {
+      "regionId": "61",
+      "localityName": "Чалтырь",
+      "id": 2
+    },
+    {
+      "regionId": "23",
+      "localityName": "Староминская",
+      "id": 3
+    },
+    {
+      "regionId": "23",
+      "localityName": "Тимашевск",
+      "id": 4
+    },
+    {
+      "regionId": "23",
+      "localityName": "Кропоткин",
+      "id": 5
+    },
+    {
+      "regionId": "61",
+      "localityName": "Шахты",
+      "id": 6
+    },
+    {
+      "regionId": "23",
+      "localityName": "Староминская",
+      "id": 7
+    },
+    {
+      "regionId": "61",
+      "localityName": "Ростов-на-Дону",
+      "id": 8
+    },
+    {
+      "regionId": "23",
+      "localityName": "Краснодар",
+      "id": 9
+    },
+    {
+      "regionId": "26",
+      "localityName": "Пятигорск",
+      "id": 10
+    },
+    {
+      "regionId": "61",
+      "localityName": "Шахты",
+      "id": 11
     }
   ]
 }
